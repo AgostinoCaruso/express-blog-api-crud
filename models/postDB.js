@@ -1,4 +1,4 @@
-const lista = [
+const postDB = [
     {
         id:1,
         titolo:"Ciambellone",
@@ -37,5 +37,5 @@ const lista = [
 ];
 
 module.exports={
-    lista
+    lista: postDB
 };

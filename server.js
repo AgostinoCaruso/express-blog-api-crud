@@ -20,7 +20,9 @@ const port = process.env.PORT;
 server.use(express.static("public"));
 //root
 const postRouter = require("./router/posts.js");
+const userRouter = require("./router/users.js");
 server.use("/post", postRouter);
+server.use("/user", userRouter);
 
 //qua partendo dal port 3000 ho l'inizio del server
 server.get("/", (req, res) => {
