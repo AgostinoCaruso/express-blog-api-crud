@@ -4,14 +4,28 @@ const { postDB } = require("../models/postDB.js");
 //show all the data for the specific request
 function index(req, res) {
 
-  let response = {
-    succes: true,
-    message: "Lista dei posts",
-    counter: postDB.length,
-    data: [...postDB],
+
+  const itemName = req.query.titolo;
+  const itemTags = req.query.tags;
+
+  let arrayCopy = [...postDB];
+
+  if(itemName){
+      arrayCopy = postDB.filter(((ele)=> ele.titolo.toLowerCase().includes(itemName.toLowerCase())));
+  }
+  if(itemTags){
+      arrayCopy = arrayCopy.filter(((ele)=> ele.tags.toLowerCase().includes(itemTags.toLowerCase())));
+  }
+
+  const response = {
+      succes: true,
+      message: "Lista degli user",
+      counter: postDB.length,
+      data: arrayCopy,
   };
 
   res.json(response);
+
 }
 
 //show only one data by id
