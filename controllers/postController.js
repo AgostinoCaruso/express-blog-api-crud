@@ -33,17 +33,25 @@ function show(req, res) {
   const index = parseInt(req.params.id);
 
   const objPost = postDB.find((ele) => ele.id === index);
-  let objToShow = {};
+
+  let response = {};
+  let status = 0;
   if (objPost) {
-    objToShow = {
+    status= 200;
+    response = {
       success: true,
       message: "Dettaglio del post " + req.params.id,
       objPost,
     };
   } else {
-    res.status(404).send("Post per indice non trovato.");
+    status = 404;
+    response = {
+      success: false,
+      message: "Non posso trovare il post " + req.params.id,
+      objPost,
+    };
   }
-  res.json(objToShow);
+  res.status(status).json(response);
 }
 //create a new item
 function store(req, res) {

@@ -37,5 +37,5 @@ const postDB = [
 ];
 
 module.exports={
-    lista: postDB
+    postDB
 };

@@ -28,20 +28,29 @@ function index(req, res) {
 
 //show only one data by id
 function show(req, res) {
+
     const index = parseInt(req.params.id);
 
-    const objPost = userDB.find((ele) => ele.id === index);
-    let objToShow = {};
-    if (objPost) {
-        objToShow = {
-            success: true,
-            message: "Dettaglio dell' user " + req.params.id,
-            objPost,
-        };
+    const objUser = userDB.find((ele) => ele.id === index);
+  
+    let response = {};
+    let status = 0;
+    if (objUser) {
+      status= 200;
+      response = {
+        success: true,
+        message: "Dettaglio dell'user " + req.params.id,
+        objUser,
+      };
     } else {
-        res.status(404).send("Post per indice non trovato.");
+      status = 404;
+      response = {
+        success: false,
+        message: "Non posso trovare l'user " + req.params.id,
+        objUser,
+      };
     }
-    res.json(objToShow);
+    res.status(status).json(response);
 }
 //create a new item
 function store(req, res) {
