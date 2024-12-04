@@ -48,7 +48,36 @@ function modify(req, res) {
 }
 //delete one item from db
 function destroy(req, res) {
-  res.send("Eliminazione della pizza " + req.params.id);
+  //todo Destroy dovrà eliminare un singolo post dalla lista, stampare nel terminale (console.log) la lista aggiornata, e rispondere con uno stato 204 e nessun contenuto.
+  const index = parseInt(req.params.id);
+
+  const indexLista = lista.findIndex((ele) => ele.id === index);
+  let response ={};
+  let status = 0;
+  //if indexLista is -1 means it returned false
+  if (indexLista >= 0) {
+
+    lista.splice(indexLista, 1);//here im deleting the item from array
+
+    status = 200;
+    response = {
+      succes: true,
+      message: "Eliminazione della pizza " + index,
+      counter: lista.length,
+      data: lista,
+    };
+  }else{
+
+    status = 204;
+    response = {
+      succes: false,
+      message: "Invalida eliminazione della pizza " + index,
+      counter: lista.length,
+      data: lista,
+    };
+  }
+  console.log(`arrray after delete: ${lista}`);
+  res.status(status).json(response);
 }
 
 module.exports = {
