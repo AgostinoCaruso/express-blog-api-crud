@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .debugger{
+    border: 5px solid red;
+} */
+:root {
+    --h1Space: 30px;
+    --smallFontSize: 2em;
+    --midFontSize: 4em;
+    --hugeFontSize: 6em;
+    --cardSpace: 20px;
+}
+
+body {
+    font-family: "Edu TAS Beginner", cursive;
+    background-image: url("../image/cork.png");
+}
+
+header {
+    background-image: url("../image/wall.png");
+}
+
+main {
+    margin-top: 30px;
+    padding: 0px 90px;
+    position: relative;
+    will-change: all;
+}
+
+button {
+    all: unset;
+}
+
+.btn {
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 20px;
+    font-weight: 800;
+    transition: all .3s ease-in-out;
+    padding: 10px 10px;
+    background-color: green;
+    color: white;
+    z-index: 10001;
+    left: 2%;
+}
+
+.btn:hover {
+    transform: scale(1.3);
+    border-radius: 0px;
+    color: black;
+}
+
+#btn-create {
+    position: fixed;
+    top: 400px;
+}
+
+#btn-delete {
+    position: fixed;
+    background-color: red;
+    top: 450px;
+}
+
+/* header */
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: var(--hugeFontSize);
+    padding: var(--h1Space) 0px;
+}
+
+/* main */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.card {
+    margin: 30px 20px;
+    width: calc((100% - (3 * 44px)) / 3);
+    aspect-ratio: 1/1;
+    background-color: white;
+    padding: var(--cardSpace) var(--cardSpace);
+    display: inline-block;
+    box-shadow: 2px 2px 1px black;
+    position: relative;
+    transition: transform .4s ease-in-out;
+    border-radius: 20px;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: scale(1.3) rotate(15deg);
+    box-shadow: 2px 2px 100px black;
+    z-index: 999;
+}
+
+.card-img {
+    height: 80%;
+}
+
+.card-text {
+    height: 20%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-height: 1em;
+
+    -webkit-box-orient: vertical;
+    font-size: 1.2em;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pinAbsolute {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card:hover .pinAbsolute {
+    display: none;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.384);
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.my-d-none {
+    display: none;
+}
+
+.card.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(-5%) scale(1);
+    transition: none;
+    z-index: 10000;
+}
+
+@media screen and (max-width:1200px) {}
+
+@media screen and (max-width:992px) {
+    .card {
+        width: calc((100% - (2 * 44px)) / 2);
+        transform: scale(.9);
+    }
+
+    .card-text {
+        font-size: 1.5em;
+    }
+
+    .card:hover {
+        transform: scale(1.1) rotate(15deg);
+        box-shadow: 2px 2px 100px black;
+    }
+
+    .card.centered {
+        transform: translate(-50%, -50%) translateX(-5%) scale(1.2);
+    }
+
+    h1 {
+        font-size: var(--midFontSize);
+        padding: 20px 0px;
+
+    }
+
+    main {
+        padding: 0px 60px;
+    }
+}
+
+@media screen and (max-width:592px) {
+    .card {
+        width: calc((100% - (1 * 44px)) / 1);
+        transform: scale(.9);
+    }
+
+    .card-text {
+        font-size: 1.4em;
+    }
+
+    .card:hover {
+        transform: scale(1.1) rotate(15deg);
+        box-shadow: 2px 2px 100px black;
+    }
+
+    .card.centered {
+        transform: translate(-50%, -50%) translateX(-5%) scale(.9);
+    }
+
+    #btn-create {
+        position: fixed;
+        top: 700px;
+        left: 60%;
+        transform: translateX(-50%);
+    }
+
+    #btn-delete {
+        position: fixed;
+        background-color: red;
+        top: 700px;
+        left: 40%;
+        transform: translateX(-50%);
+    }
+
+    h1 {
+        font-size: var(--smallFontSize);
+        padding: 10px 0px;
+    }
+}

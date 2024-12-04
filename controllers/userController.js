@@ -88,7 +88,6 @@ function destroy(req, res) {
             data: userDB,
         };
     } else {
-
         status = 204;
         response = {
             succes: false,

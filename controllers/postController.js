@@ -70,7 +70,6 @@ function modify(req, res) {
 }
 //delete one item from db
 function destroy(req, res) {
-  //todo Destroy dovrà eliminare un singolo post dalla lista, stampare nel terminale (console.log) la lista aggiornata, e rispondere con uno stato 204 e nessun contenuto.
   const index = parseInt(req.params.id);
 
   const indexLista = postDB.findIndex((ele) => ele.id === index);
