@@ -55,12 +55,49 @@ function show(req, res) {
 //create a new item
 function store(req, res) {
 
-    res.send("Creazione nuova user");
+  let indexAcc = 0;
+  for (let i = 0; i < userDB.length; i++) {
+    if (userDB[i].id > indexAcc) {
+      indexAcc = userDB[i].id;
+    }
+  }
+  indexAcc++;
+  const newUser = {
+    id: indexAcc,
+    name: req.body.name,
+    work: req.body.work,
+  };
+  userDB.push(newUser);
+  console.log(newUser);
+  res.status(201).json(newUser);
 }
 //update an item
 function update(req, res) {
+    
+  const id = parseInt(req.params.id);
+  const item = userDB.find((item) => item.id === id);
+  if (!item) {
 
-    res.send("Modifica integrale della user " + req.params.id);
+    res.status(404).json({ success: false, message: "User non esiste" });
+    return;
+  }
+  console.log(req.body);
+  //è tedioso e lungo e devi scriverlo a mano tutto
+  /*
+  item.titolo = req.body.name;
+  item.img = req.body.image;
+  item.tags = req.body.tags;
+  */
+
+  //fa la stessa cosa ma piu pulita
+  for (key in item) {
+    if (key !== "id") {
+      item[key] = req.body[key];
+    }
+  }
+
+  console.log(userDB);
+  res.send("Modifica integrale dell user " + req.params.id);
 }
 
 function modify(req, res) {

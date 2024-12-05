@@ -62,13 +62,13 @@ function store(req, res) {
       indexAcc = postDB[i].id;
     }
   }
+  indexAcc++;
 
   const newPost = {
-    counter:postDB.length,
     id: indexAcc,
     titolo: req.body.titolo,
-    image: req.body.img,
     contenuto: req.body.contenuto,
+    image: req.body.image,
   };
   postDB.push(newPost);
   console.log(newPost);
@@ -100,7 +100,7 @@ function update(req, res) {
   }
 
   console.log(postDB);
-  res.send("Modifica integrale della pizza " + req.params.id);
+  res.send("Modifica integrale del post" + req.params.id);
 }
 
 function modify(req, res) {
