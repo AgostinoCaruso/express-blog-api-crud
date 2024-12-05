@@ -5,16 +5,18 @@ const server = express();
 const port = process.env.PORT;
 //other var
 server.use(express.static("public"));
+server.use(express.json());
 //root
 const postRouter = require("./router/posts.js");
-server.use("/post", postRouter);
+server.use("/posts", postRouter);
 
 const userRouter = require("./router/users.js");
-server.use("/user", userRouter);
+server.use("/users", userRouter);
 
 //qua partendo dal port 3000 ho l'inizio del server
 server.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname,"public","index.html"));
+  console.log(__dirname +"/views/index.html");
+  res.sendFile(__dirname+"/views/index.html");
   //res.send("<h1>Server del mio blog</h1>");
 });
 

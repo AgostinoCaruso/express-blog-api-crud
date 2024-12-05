@@ -79,7 +79,7 @@ function CreateCard(img, text, id) {
     card.className = "card debugger";
 
     card.innerHTML = `
-        <span class="pinAbsolute"><img src="./image/pin.svg" alt=""></span>
+        <span class="pinAbsolute"><img src="../public/image/pin.svg" alt=""></span>
         <div class="card-img debugger">
             <img src="${img}" alt="${text}">
         </div>
