@@ -1,5 +1,5 @@
 const { postDB } = require("../models/postDB.js");
-const { post } = require("../router/posts.js");
+//const { post } = require("../router/posts.js");
 
 //show all the data for the specific request
 function index(req, res) {

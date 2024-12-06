@@ -6,6 +6,7 @@ const port = process.env.PORT;
 //other var
 server.use(express.static("public"));
 server.use(express.json());
+const {notFound, interalServerErr} = require("./middlewares/errorsHandling.js");
 //root
 const postRouter = require("./router/posts.js");
 server.use("/posts", postRouter);
@@ -23,10 +24,14 @@ server.get("/", (req, res) => {
 
 
 
-//default catch for typo url
-server.get("*", (req, res) => {
-  res.status(404).send("<h1>ERROR - 404 page not found</h1>");
-});
+//default catch for typo url è obsoleto ora con i middleware
+// server.get("*", (req, res) => {
+//   res.status(404).send("<h1>ERROR - 404 page not found</h1>");
+// });
+//check per error 500
+server.use(interalServerErr);
+//check per error 404
+server.use(notFound);
 
 //qua sto in ascolto per la porta 3000
 server.listen(port, () => {
